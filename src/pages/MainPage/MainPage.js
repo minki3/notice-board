@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import ReactHtmlParser from "react-html-parser";
 
 const MainPages = () => {
   const [contents, setContents] = useState({ title: "", detail: "" });
@@ -11,31 +12,38 @@ const MainPages = () => {
 
   const handleTitle = (e) => {
     const { name, value } = e.target;
-    setContents({ ...contents, [name]: value });
+    setContents((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleButton = () => {
-    setNoticeBoard(noticeBoard.concat({ ...contents }));
-    deleteContant();
+    setNoticeBoard(noticeBoard.concat(contents));
   };
 
   const deleteContant = () => {
     setContents({ title: "", detail: "" });
-    // ClassicEditor.editing.view.document.getRoot().getChild(0).removeChildren();
   };
-  console.log("title", title);
-  console.log("detail", detail);
-  console.log(contents);
+
+  const deleteButton = (i) => {
+    setNoticeBoard(noticeBoard.filter((_, index) => index !== i));
+  };
+
   return (
     <MainContainer>
-      <NoticeBoard>게시판</NoticeBoard>
+      <NoticeBoard>1</NoticeBoard>
       <MainBox>
         {noticeBoard.map((item, idx) => {
           const { title, detail } = item;
           return (
             <div key={idx}>
               <Subject>{title}</Subject>
-              <Content>{detail}</Content>
+              <button
+                onClick={() => {
+                  deleteButton(idx);
+                }}
+              >
+                x
+              </button>
+              <Content>{ReactHtmlParser(detail)}</Content>
             </div>
           );
         })}
@@ -48,7 +56,8 @@ const MainPages = () => {
       ></Title>
       <CKEditor
         editor={ClassicEditor}
-        detail=""
+        data={detail}
+        name="detail"
         config={{
           // toolbar: ["heading", "|", "bold", "italic", "link", "bulletedList"], 커스터마이징
           placeholder: "내용을 입력하세요.",
@@ -59,11 +68,9 @@ const MainPages = () => {
         // }}
         onChange={(event, editor) => {
           const content = editor.getData();
-          console.log(content);
-          setContents({ ...contents, detail: content });
+          setContents((prev) => ({ ...prev, detail: content }));
         }}
-        name="detail"
-        value={detail}
+
         // onBlur={(event, editor) => {
         //   console.log("Blur.", editor);
         // }}
@@ -76,8 +83,8 @@ const MainPages = () => {
           if (title === "") {
             alert("제목을 입력하세요");
           } else {
-            handleButton();
             deleteContant();
+            handleButton();
           }
         }}
       >
@@ -101,7 +108,6 @@ const NoticeBoard = styled.div`
 `;
 
 const MainBox = styled.div`
-  border: 1px solid gray;
   width: 100%;
   padding-bottom: 20px;
   margin-bottom: 50px;
