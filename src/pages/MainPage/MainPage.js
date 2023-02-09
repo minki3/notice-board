@@ -29,7 +29,7 @@ const MainPages = () => {
 
   return (
     <MainContainer>
-      <NoticeBoard>1</NoticeBoard>
+      <NoticeBoard>noticeboard</NoticeBoard>
       <MainBox>
         {noticeBoard.map((item, idx) => {
           const { title, detail } = item;
@@ -59,7 +59,7 @@ const MainPages = () => {
         data={detail}
         name="detail"
         config={{
-          // toolbar: ["heading", "|", "bold", "italic", "link", "bulletedList"], 커스터마이징
+          // toolbar: ["heading", "|", "bold", "italic", "link", "bulletedList"], //커스터마이징
           placeholder: "내용을 입력하세요.",
         }}
         // onReady={(editor) => {

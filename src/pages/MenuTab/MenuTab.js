@@ -12,14 +12,15 @@ const MenuTab = () => {
       <Menu>
         {MENU_TAB.map((item, idx) => {
           return (
-            <div
+            <Content
               key={idx}
               onClick={() => {
                 setTab(item);
               }}
+              aria-current={tab === item ? "page" : null}
             >
               {item}
-            </div>
+            </Content>
           );
         })}
       </Menu>
@@ -50,6 +51,21 @@ const Tab = styled.div`
   height: 300px;
   width: 500px;
   border: 1px solid gray;
+`;
+const Content = styled.div`
+  width: 250px;
+  height: 100px;
+  border: 1px solid gray;
+
+  :hover {
+    background-color: black;
+    color: white;
+  }
+
+  &[aria-current] {
+    background-color: black;
+    color: white;
+  }
 `;
 
 const MENU_TAB = ["first", "second", "third"];
