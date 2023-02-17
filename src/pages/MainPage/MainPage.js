@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "react-html-parser";
 
 const MainPages = () => {
   const [contents, setContents] = useState({ title: "", detail: "" });
@@ -43,7 +43,8 @@ const MainPages = () => {
               >
                 x
               </button>
-              <Content>{ReactHtmlParser(detail)}</Content>
+              {/* <Content>{ReactHtmlParser(detail)}</Content> */}
+              <Content>{detail}</Content>
             </div>
           );
         })}
