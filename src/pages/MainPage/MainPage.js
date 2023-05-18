@@ -7,9 +7,10 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 const MainPages = () => {
   const [contents, setContents] = useState({ title: "", detail: "" });
   const [noticeBoard, setNoticeBoard] = useState([]);
+  const [ture, setTrue] = useState(false);
 
   const { title, detail } = contents;
-
+  console.log(ture);
   const handleTitle = (e) => {
     const { name, value } = e.target;
     setContents((prev) => ({ ...prev, [name]: value }));
@@ -91,6 +92,15 @@ const MainPages = () => {
       >
         올리기
       </Button>
+      <div>
+        <input
+          type="text"
+          onBlur={() => {
+            if (!ture) console.log("1");
+          }}
+        />
+        <button onClick={() => setTrue(true)}>check</button>
+      </div>
     </MainContainer>
   );
 };

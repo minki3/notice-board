@@ -2,16 +2,22 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import conuterSlice from "../store/counterSlice";
 import MinusSlice from "../store/MinusSlice";
+import boolean from "../store/boolean";
 
 const Redux = () => {
   const count = useSelector((state) => {
     return state.counter.value;
   });
 
-  const dispatch = useDispatch();
   const minus = useSelector((state) => {
     return state.minus.value;
   });
+
+  const isBoolean = useSelector((state) => {
+    return state.boolean.value;
+  });
+  console.log(isBoolean);
+  const dispatch = useDispatch();
   return (
     <>
       <div>{count}</div>
@@ -48,6 +54,13 @@ const Redux = () => {
           dispatch(MinusSlice.actions.down(2));
         }}
       ></button>
+      <button
+        onClick={() => {
+          dispatch(boolean.actions.toggle());
+        }}
+      >
+        {isBoolean ? "true" : "false"}
+      </button>
     </>
   );
 };

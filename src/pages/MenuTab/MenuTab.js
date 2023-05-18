@@ -19,7 +19,7 @@ const MenuTab = () => {
               }}
               aria-current={tab === item ? "page" : null}
             >
-              {item}
+              {item}n
             </Content>
           );
         })}

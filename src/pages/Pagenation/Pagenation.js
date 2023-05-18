@@ -23,6 +23,7 @@ const Pagenation = () => {
   }, []);
 
   console.log(data.length);
+  
   return (
     <Container>
       <Top>pagenation</Top>
