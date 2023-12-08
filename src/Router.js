@@ -5,6 +5,7 @@ import Pagenation from "./pages/Pagenation/Pagenation";
 import MenuTab from "./pages/MenuTab/MenuTab";
 import InfinityScroll from "./pages/infinityScroll/InfinityScroll";
 import Redux from "./pages/redux/Redux";
+import EventExercise from "./pages/Event/EventExercise";
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="/menutab" element={<MenuTab />} />
         <Route path="/infinityscroll" element={<InfinityScroll />} />
         <Route path="/redux" element={<Redux />} />
+        <Route path="/event" element={<EventExercise />} />
       </Routes>
     </BrowserRouter>
   );
