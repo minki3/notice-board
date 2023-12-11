@@ -1,41 +1,42 @@
 import React from "react";
 
 export default function EventExercise() {
-  const handleParentClick = () => {
-    alert("부모 이벤트");
+  const handleParentClick = (event) => {
+    console.log("부모 이벤트");
+    // event.stopPropagation();
   };
 
   const handleChild1Click = (event) => {
-    alert("자식1 이벤트");
+    console.log("자식1 이벤트");
     // 이벤트 전파 중단
-    event.stopPropagation();
+    // event.stopPropagation();
   };
 
   const handleChild2Click = (event) => {
-    alert("자식2 이벤트");
-    event.stopPropagation();
+    console.log("자식2 이벤트");
+    // event.stopPropagation();
   };
 
   const handleLinkClick = (event) => {
     // 기본 동작인 페이지 전환을 막음
-    // event.preventDefault();
+    event.preventDefault();
 
     // 추가적인 로직을 수행할 수 있음
     alert("링크 클릭, 페이지 전환을 막음");
   };
 
   return (
-    <>
+    <div>
       <div onClick={handleParentClick}>
         부모
-        <button onClick={handleChild1Click}>
+        <div onClick={handleChild1Click}>
           자식1
-          <button onClick={handleChild2Click}>자식2</button>
-        </button>
-        <a href="www.naver.com" onClick={handleLinkClick}>
+          <div onClick={handleChild2Click}>자식2</div>
+        </div>
+        {/* <a href="www.naver.com" onClick={handleLinkClick}>
           이동
-        </a>
+        </a> */}
       </div>
-    </>
+    </div>
   );
 }
